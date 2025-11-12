@@ -1,14 +1,12 @@
 # Лабораторні з реінжинірингу (8×)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=alert_status&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=coverage)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=bugs)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
-
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=coverage&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=bugs&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=code_smells&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=vulnerabilities&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=duplicated_lines_density&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=security_rating&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=sqale_rating&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
 
 
 Цей репозиторій використовується для курсу **реінжиніринг ПЗ**. 

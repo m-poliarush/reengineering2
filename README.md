@@ -1,5 +1,6 @@
 # Лабораторні з реінжинірингу (8×)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=alert_status&token=74646b72ae91778b740c50b7ef61cfef6ba3f1ce)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=coverage)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=bugs)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=m-poliarush_reengineering2&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=m-poliarush_reengineering2)

@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="248" visitedSequencePoints="98" numBranchPoints="102" visitedBranchPoints="22" sequenceCoverage="39.51" branchCoverage="21.56" maxCyclomaticComplexity="114" minCyclomaticComplexity="114" visitedClasses="7" numClasses="17" visitedMethods="15" numMethods="33" />
   <Modules>
-    <Module hash="24EFCFF6-8792-48EB-8ACC-E2B54307FE0B">
+    <Module hash="82A54FD5-FBA1-49ED-ABAF-753809E9B1E9">
       <ModulePath>NetSdrClientApp.dll</ModulePath>
-      <ModuleTime>2025-11-12T11:13:54</ModuleTime>
+      <ModuleTime>2025-11-12T11:28:34</ModuleTime>
       <ModuleName>NetSdrClientApp</ModuleName>
       <Files>
         <File uid="1" fullPath="C:\Users\polar\source\repos\m-poliarush\reengineering2\NetSdrClientApp\Program.cs" />

@@ -65,7 +65,7 @@ namespace NetSdrClientAppTests
         }
 
         //TODO: add more NetSdrMessageHelper tests
-        
+       
 
         [Test]
         public void TranslateMessage_DataItem_Success()

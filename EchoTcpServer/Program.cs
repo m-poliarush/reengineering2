@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 /// This program was designed for test purposes only
 /// Not for a review
 /// </summary>
-public class EchoServer
+/// 
+namespace EchoServer
 {
-    private readonly int _port;
-    private TcpListener _listener;
-    private readonly CancellationTokenSource _cancellationTokenSource;
+    public class EchoServer
+    {
+        private readonly int _port;
+        private TcpListener _listener;
+        private readonly CancellationTokenSource _cancellationTokenSource;
 
 
         public EchoServer(int port)
@@ -47,14 +50,14 @@ public class EchoServer
             Console.WriteLine("Server shutdown.");
         }
 
-    private static async Task HandleClientAsync(TcpClient client, CancellationToken token)
-    {
-        using (NetworkStream stream = client.GetStream())
+        private static async Task HandleClientAsync(TcpClient client, CancellationToken token)
         {
-            try
+            using (NetworkStream stream = client.GetStream())
             {
-                byte[] buffer = new byte[8192];
-                int bytesRead;
+                try
+                {
+                    byte[] buffer = new byte[8192];
+                    int bytesRead;
 
                     while (!token.IsCancellationRequested && (bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token)) > 0)
                     {

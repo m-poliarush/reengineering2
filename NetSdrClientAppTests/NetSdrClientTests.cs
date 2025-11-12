@@ -133,12 +133,11 @@ public class NetSdrClientTests
     public void TcpMessageReceived_Unsolicited_DoesNotThrow()
     {
         // Arrange
-        // Переконуємось, що responseTaskSource == null (стан за замовчуванням)
+      
         var unsolicitedMessage = new byte[] { 0xDE, 0xAD, 0xBE, 0xEF };
 
         // Act & Assert
-        // Симулюємо подію і перевіряємо, що вона не викликає виняток
-        // (наприклад, NullReferenceException на responseTaskSource)
+
         Assert.DoesNotThrow(() =>
         {
             _tcpMock.Raise(tcp => tcp.MessageReceived += null, _tcpMock.Object, unsolicitedMessage);

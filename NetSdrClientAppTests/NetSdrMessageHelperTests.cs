@@ -73,8 +73,7 @@ namespace NetSdrClientAppTests
             // Arrange
             var type = NetSdrMessageHelper.MsgTypes.DataItem1;
             var parameters = new byte[] { 0xDE, 0xAD, 0xBE, 0xEF };
-            // DataItem повідомлення мають sequence number, але GetMessage його не додає.
-            // Тому ми збираємо повідомлення вручну для тестування.
+
             var seqNum = (ushort)12345;
             var seqNumBytes = BitConverter.GetBytes(seqNum);
             var headerBytes = BitConverter.GetBytes((ushort)((parameters.Length + seqNumBytes.Length + 2) + ((int)type << 13))); // 2 - header

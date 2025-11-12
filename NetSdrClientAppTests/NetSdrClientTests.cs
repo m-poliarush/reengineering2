@@ -114,6 +114,51 @@ public class NetSdrClientTests
         _updMock.Verify(tcp => tcp.StopListening(), Times.Once);
         Assert.That(_client.IQStarted, Is.False);
     }
+    [Test]
+    public async Task ChangeFrequencyAsyncTest()
+    {
+        // Arrange
+        await _client.ConnectAsync(); 
+        long testFrequency = 145_000_000L;
+        int testChannel = 0;
 
-    //TODO: cover the rest of the NetSdrClient code here
+        // Act
+        await _client.ChangeFrequencyAsync(testFrequency, testChannel);
+
+        // Assert
+
+        _tcpMock.Verify(tcp => tcp.SendMessageAsync(It.IsAny<byte[]>()), Times.Exactly(4));
+    }
+    [Test]
+    public void TcpMessageReceived_Unsolicited_DoesNotThrow()
+    {
+        // Arrange
+        // Переконуємось, що responseTaskSource == null (стан за замовчуванням)
+        var unsolicitedMessage = new byte[] { 0xDE, 0xAD, 0xBE, 0xEF };
+
+        // Act & Assert
+        // Симулюємо подію і перевіряємо, що вона не викликає виняток
+        // (наприклад, NullReferenceException на responseTaskSource)
+        Assert.DoesNotThrow(() =>
+        {
+            _tcpMock.Raise(tcp => tcp.MessageReceived += null, _tcpMock.Object, unsolicitedMessage);
+        });
+    }
+
+    [Test]
+    public async Task StopIQNoConnectionTest()
+    {
+        // Arrange
+        _tcpMock.Setup(tcp => tcp.Connected).Returns(false);
+
+        // Act
+        await _client.StopIQAsync();
+
+        // Assert
+        _tcpMock.Verify(tcp => tcp.SendMessageAsync(It.IsAny<byte[]>()), Times.Never);
+        _tcpMock.VerifyGet(tcp => tcp.Connected, Times.AtLeastOnce);
+        _updMock.Verify(udp => udp.StopListening(), Times.Never);
+    }
 }
+
+

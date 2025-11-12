@@ -65,5 +65,31 @@ namespace NetSdrClientAppTests
         }
 
         //TODO: add more NetSdrMessageHelper tests
+        
+
+        [Test]
+        public void TranslateMessage_DataItem_Success()
+        {
+            // Arrange
+            var type = NetSdrMessageHelper.MsgTypes.DataItem1;
+            var parameters = new byte[] { 0xDE, 0xAD, 0xBE, 0xEF };
+            // DataItem повідомлення мають sequence number, але GetMessage його не додає.
+            // Тому ми збираємо повідомлення вручну для тестування.
+            var seqNum = (ushort)12345;
+            var seqNumBytes = BitConverter.GetBytes(seqNum);
+            var headerBytes = BitConverter.GetBytes((ushort)((parameters.Length + seqNumBytes.Length + 2) + ((int)type << 13))); // 2 - header
+
+            byte[] msg = headerBytes.Concat(seqNumBytes).Concat(parameters).ToArray();
+
+            // Act
+            bool success = NetSdrMessageHelper.TranslateMessage(msg, out var actualType, out var actualCode, out var actualSeqNum, out var actualBody);
+
+            // Assert
+            Assert.That(success, Is.True);
+            Assert.That(actualType, Is.EqualTo(type));
+            Assert.That(actualCode, Is.EqualTo(NetSdrMessageHelper.ControlItemCodes.None));
+            Assert.That(actualSeqNum, Is.EqualTo(seqNum));
+            Assert.That(actualBody, Is.EqualTo(parameters));
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using EchoServer;
-using NetArchTest.Rules;
+﻿using NetArchTest.Rules;
 using NetSdrClientApp; 
 using System.Reflection; 
 
@@ -11,7 +10,6 @@ namespace NetSdrClientAppTests
         private static readonly Assembly _appAssembly = typeof(NetSdrClient).Assembly;
 
         private static readonly Assembly _testAssembly = typeof(ArchitectureTests).Assembly;
-        private EchoServer.EchoServer _testDependency;
 
 
         [Test]

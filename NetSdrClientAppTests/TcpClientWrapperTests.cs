@@ -3,6 +3,9 @@ using NetSdrClientApp.Networking;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Text;
+using System.Linq;
+using System;
 
 namespace NetSdrClientAppTests
 {
@@ -10,7 +13,6 @@ namespace NetSdrClientAppTests
     public class TcpClientWrapperTests
     {
         private TcpListener _testListener;
-        private int _testPort = 54321; 
         private string _testHost = "127.0.0.1";
 
         [TearDown]
@@ -19,22 +21,28 @@ namespace NetSdrClientAppTests
             _testListener?.Stop();
         }
 
+    
+        private int StartServerAndGetPort()
+        {
+            _testListener = new TcpListener(IPAddress.Loopback, 0);
+            _testListener.Start();
+            return ((IPEndPoint)_testListener.LocalEndpoint).Port;
+        }
+
         [Test]
-        [TearDown]
         public async Task Connect_And_Disconnect_ExecutesFullLifecycle()
         {
             // Arrange
-            _testListener = new TcpListener(IPAddress.Loopback, _testPort);
-            _testListener.Start();
+            int port = StartServerAndGetPort();
 
             var acceptTask = _testListener.AcceptTcpClientAsync();
-            var clientWrapper = new TcpClientWrapper(_testHost, _testPort);
+            var clientWrapper = new TcpClientWrapper(_testHost, port);
 
             // Act (Connect)
             clientWrapper.Connect();
             TcpClient serverSideClient = await acceptTask;
-            Assert.That(serverSideClient.Connected, Is.True, "Сервер не прийняв клієнта");
 
+            Assert.That(serverSideClient.Connected, Is.True, "Сервер не прийняв клієнта");
             Assert.That(clientWrapper.Connected, Is.True, "Wrapper не вважає себе підключеним");
 
             // Act (Disconnect)
@@ -43,15 +51,15 @@ namespace NetSdrClientAppTests
             // Assert
             Assert.That(clientWrapper.Connected, Is.False, "Wrapper не відключився");
 
+            // Cleanup (local variables)
             serverSideClient.Close();
-            _testListener.Stop();
         }
 
         [Test]
         public void Disconnect_WhenNotConnected_DoesNotThrow()
         {
-            // Arrange
-            var clientWrapper = new TcpClientWrapper(_testHost, _testPort);
+
+            var clientWrapper = new TcpClientWrapper(_testHost, 55555);
 
             Assert.That(clientWrapper.Connected, Is.False);
 
@@ -60,6 +68,35 @@ namespace NetSdrClientAppTests
             {
                 clientWrapper.Disconnect();
             });
+        }
+
+        [Test]
+        public async Task SendMessageAsync_String_SendsCorrectBytes()
+        {
+            // Arrange
+            int port = StartServerAndGetPort(); 
+
+            var clientWrapper = new TcpClientWrapper(_testHost, port);
+            string messageToSend = "Hello SonarCloud";
+            byte[] expectedBytes = Encoding.UTF8.GetBytes(messageToSend);
+
+            // Act
+            clientWrapper.Connect();
+
+            var serverClientTask = _testListener.AcceptTcpClientAsync();
+            await clientWrapper.SendMessageAsync(messageToSend);
+            var serverClient = await serverClientTask;
+
+            // Assert
+            var buffer = new byte[1024];
+            var stream = serverClient.GetStream();
+            int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+
+            var receivedBytes = buffer.Take(bytesRead).ToArray();
+
+            Assert.That(receivedBytes, Is.EqualTo(expectedBytes), "UTF8 байти не співпадають");
+
+            serverClient.Close();
         }
     }
 }

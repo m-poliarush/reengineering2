@@ -90,7 +90,7 @@ namespace NetSdrClientAppTests
             // Assert
             var buffer = new byte[1024];
             var stream = serverClient.GetStream();
-            int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+            int bytesRead = await stream.ReadAsync(buffer.AsMemory(), CancellationToken.None);
 
             var receivedBytes = buffer.Take(bytesRead).ToArray();
 

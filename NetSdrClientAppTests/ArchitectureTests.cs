@@ -1,4 +1,5 @@
-﻿using NetArchTest.Rules;
+﻿using EchoServer;
+using NetArchTest.Rules;
 using NetSdrClientApp; 
 using System.Reflection; 
 
@@ -10,6 +11,7 @@ namespace NetSdrClientAppTests
         private static readonly Assembly _appAssembly = typeof(NetSdrClient).Assembly;
 
         private static readonly Assembly _testAssembly = typeof(ArchitectureTests).Assembly;
+        private EchoServer.EchoServer _testDependency;
 
 
         [Test]
@@ -45,8 +47,7 @@ namespace NetSdrClientAppTests
         public void Tests_Not_Depend_On_Server()
         {
 
-
-            var result = Types.InAssembly(_testAssembly)
+            var result = Types.InCurrentDomain()
                 .ShouldNot()
                 .HaveDependencyOn("EchoServer") 
                 .GetResult();
